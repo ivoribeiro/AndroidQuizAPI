@@ -1,0 +1,20 @@
+{
+  "get": [
+    {
+      "path": "/scores",
+      "action": "getScores"
+    }
+  ],
+  "post": [
+    {
+      "path": "/players",
+      "action": "createPlayer"
+    }
+  ],
+  "put": [
+    {
+      "path": "/scores/:username",
+      "action": "updateScore"
+    }
+  ]
+}
