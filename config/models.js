@@ -6,10 +6,9 @@ exports.production = {
 				'mongodb':'sails-mongo'
 			},
 			connections:{
-				mongodb:{
-					adapter:'mongodb',
-					url:'mongodb://androiquiz:0.0.0.0:27017'
-				}
+                mongodb: {
+                    database: 'androidquiz' // or omit if not relevant
+                }
 			},
 			defaults:{
 				migrate:'safe'
