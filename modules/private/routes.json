@@ -14,7 +14,7 @@
   "put": [
     {
       "path": "/scores/:username",
-      "action": "updateScore"
+      "action": "updatePlayerScore"
     }
   ]
 }

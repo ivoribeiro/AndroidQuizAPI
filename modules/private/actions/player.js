@@ -35,49 +35,6 @@ module.exports = [{
             })
     }
 }, {
-    name: 'getPlayers',
-    description: 'Get all Players',
-
-    run(api, action, next) {
-        api.models.get('player')
-            .find({})
-            .sort('-pontuacao')
-            .catch(error => {
-                next(error)
-            })
-            .then(resources => {
-                action.response.players = resources
-                next()
-            })
-    }
-}, {
-    name: 'getPlayer',
-    description: 'Get a Player',
-
-    inputs: {
-        id: {required: true}
-    },
-
-    run(api, action, next) {
-        // search for the request post on the DB
-        api.models.get('player')
-            .findOneById(action.params.id)
-            .catch(error => {
-                next(error)
-            })
-            .then(resource => {
-                if (!resource) {
-                    return next(`There is no resource with that ID`)
-                }
-
-                // append the model to the response object
-                action.response.player = resource
-
-                // finish the action execution
-                next()
-            })
-    }
-}, {
     name: 'getScores',
     description: 'Get all the Players scores',
 
@@ -125,49 +82,4 @@ module.exports = [{
                 next()
             })
     }
-},
-    {
-        name: 'editPlayer',
-        description: 'Edit a Player',
-
-        inputs: editInputDeclaration,
-
-        run(api, action, next) {
-            // search for the Player and update it
-            api.models.get('player')
-                .update({id: action.params.id}, action.params)
-                .catch(error => {
-                    next(error)
-                })
-                .then(result => {
-                    if (result.length == 0) {
-                        return next(`There is no resource with that ID`)
-                    }
-
-                    // append the updated model to the response object
-                    action.response.player = result[0]
-
-                    // finish the action execution
-                    next()
-                })
-        }
-    }, {
-        name: 'removePlayer',
-        description: 'Remove a Player',
-
-        inputs: {
-            id: {required: true}
-        },
-
-        run(api, action, next) {
-            // search and remove the model
-            api.models.get('player')
-                .destroy({id: action.params.id})
-                .catch(error => {
-                    next(error)
-                })
-                .then(() => {
-                    next()
-                })
-        }
-    }]
+}]
