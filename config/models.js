@@ -7,6 +7,7 @@ exports.production = {
 			},
 			connections:{
                 mongodb: {
+	            adapter:'mongodb',
                     database: 'androidquiz' // or omit if not relevant
                 }
 			},
