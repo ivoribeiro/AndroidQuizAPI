@@ -6,19 +6,15 @@ const inputsDeclaration = {}
 // constant with the edit input declaration
 const editInputDeclaration = JSON.parse(JSON.stringify(inputsDeclaration))
 editInputDeclaration.id = {required: true}
+editInputDeclaration.username = {required: true}
+editInputDeclaration.avatar = {required: true}
 
 module.exports = [{
     name: 'createPlayer',
     description: 'Create a new Player',
 
-    inputs: {
-        username: {required: true},
-        pin: {required: true},
-        avatar: {required: true}
-    },
 
     run(api, action, next) {
-        console.log(action.params)
         action.params.pontuacao = 0
         // create a new entry on the database
         api.models.get('player')
@@ -54,15 +50,10 @@ module.exports = [{
     name: 'updatePlayerScore',
     description: 'Updates the user score',
 
-    inputs: {
-        username: {required: true},
-        pontuacao: {required: true}
-    },
-
     run(api, action, next) {
         // search for the request post on the DB
         api.models.get('player')
-            .update({username: action.params.username}, action.params)
+            .update({username: action.params.username}, {pontuacao: action.params.pontuacao})
             .catch(error => {
                 next(error)
             })

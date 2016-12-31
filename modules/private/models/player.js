@@ -4,10 +4,6 @@ exports.default = {
             type: 'string',
             unique: true
         },
-        pin: {
-            type: 'integer',
-            required: true
-        },
         avatar: {
             type: 'string',
             required: true
