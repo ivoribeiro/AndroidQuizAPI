@@ -2,7 +2,8 @@ exports.default = {
     attributes: {
         username: {
             type: 'string',
-            unique: true
+            unique: true,
+            required: true
         },
         avatar: {
             type: 'string',
